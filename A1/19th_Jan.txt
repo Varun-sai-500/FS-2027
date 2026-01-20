@@ -1,0 +1,265 @@
+/*
+You are given a 0-indexed string blocks of length n, 
+where blocks[i] is either 'W' or 'B', representing the color of the ith block. 
+The characters 'W' and 'B' denote the colors white and black, respectively.
+
+You are also given an integer k, which is the desired number of consecutive 
+black blocks.
+
+In one operation, you can recolor a white block such that it becomes a black 
+block.
+
+Return the minimum number of operations needed such that there is at least one 
+occurrence of k consecutive black blocks.
+
+input format: string an integer(k)
+output format : an Integer
+ 
+Example 1:
+
+Input: WBBWWBBWBW
+7
+Output: 3
+Explanation:
+One way to achieve 7 consecutive black blocks is to recolor the 0th, 3rd, 
+and 4th blocks
+so that blocks = "BBBBBBBWBW". 
+It can be shown that there is no way to achieve 7 consecutive black blocks in 
+less than 3 operations.
+Therefore, we return 3.
+
+Example 2:
+Input:WBWBBBW
+2
+Output: 0
+
+Explanation:
+No changes need to be made, since 2 consecutive black blocks already exist.
+Therefore, we return 0.
+ 
+
+Constraints:
+
+n == blocks.length
+1 <= n <= 100
+blocks[i] is either 'W' or 'B'.
+1 <= k <= n
+*/
+
+
+
+/*
+Given a binary array, find the index of 0 to be replaced with 1 to get a maximum 
+length sequence of continuous ones.
+For example, consider array { 0, 0, 1, 0, 1, 1, 1, 0, 1, 1 }. The index to be 
+replaced is 7 to get a continuous sequence of length 6 containing all 1’s.
+Note if no replacement is possible then print -1
+
+Example:
+input=10
+0 0 1 0 1 1 1 0 1 1
+output=7
+
+Example 2:
+input=12
+1 1 1 1 1 1 1 1 1 1 1 0
+output=11
+
+Example 3:
+input=12
+0 0 0 0 0 0 0 0 0 0 0 0
+output=0
+
+Example 4:
+input=10
+1 1 1 1 1 1 1 1 1 1
+output=-1
+*/
+
+/*A string is good if there are no repeated characters.
+Given a string s, return the number of good substrings of length three in s.
+Note that if there are multiple occurrences of the same substring, every 
+occurrence should be counted.
+A substring is a contiguous sequence of characters in a string.
+
+Example 1:
+input: s = "xyzzaz"
+output: 1
+
+Explanation: There are 4 substrings of size 3: "xyz", "yzz", "zza", and "zaz". 
+The only good substring of length 3 is "xyz".
+
+Example 2:
+Input: s = "aababcabc"
+Output: 4
+Explanation: There are 7 substrings of size 3: "aab", "aba", "bab", "abc", 
+"bca", "cab", and "abc".
+The good substrings are "abc", "bca", "cab", and "abc".
+*/
+
+
+/*You are visiting a farm that has a single row of fruit trees arranged from left to right.
+ The trees are represented by an integer array fruits where fruits[i] is the type of fruit the ith tree produces.
+You want to collect as much fruit as possible. 
+
+However, the owner has some strict rules that you must follow:
+You only have two baskets, and each basket can only hold a single type of fruit. 
+There is no limit on the amount of fruit each basket can hold.
+Starting from any tree of your choice, you must pick exactly one fruit from every tree (including the start tree)
+ while moving to the right. The picked fruits must fit in one of your baskets.
+Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
+Given the integer array fruits, return the maximum number of fruits you can pick.
+
+Sample cases:
+
+case 1:
+Input: 
+3
+1 2 1
+Output: 3
+Explanation: We can pick from all 3 trees.
+
+Case  2:
+Input: 
+4
+0 1 2 2 
+Output: 3
+Explanation: We can pick from trees [1,2,2].
+If we had started at the first tree, we would only pick from trees [0,1].
+
+case 3:
+Input: 
+5
+1 2 3 2 2
+Output: 4
+Explanation: We can pick from trees [2,3,2,2].
+If we had started at the first tree, we would only pick from trees [1,2].
+*/
+
+
+A tenth standard student has been given a task, Given P number of subject marks 
+and a number I, He has to print the I-th least value of sums among all the 
+possible sub-arrays of marks.
+
+Input Format:
+-------------
+Line-1: Two space separated inetegers, P and I.
+Line-2: P space separated integers, marks[].
+
+Output Format:
+--------------
+Print the I-th least value of possible sums.
+
+Sample Input-1:
+--------------
+3 4
+3 2 4
+
+Sample output-1:
+---------------
+5
+
+Explanation: 
+------------
+The subarrays of 3 2 4 are:
+1st subarray: 3 the sum is 3
+2nd subarray: 2 the sum is 2
+3rd subarray: 4 the sum is 4
+4th subarray: 3,2 the sum is 5
+5th subarray: 2,4 the sum is 6
+6th subarray: 3,2,4 the sum is 9
+
+The 4th smallest is 5
+
+Sample Input-2:
+---------------
+4 7
+2 2 4 4
+
+Sample output-2:
+----------------
+8
+
+Explanation: 
+------------
+The subarrays of 2 2 4 4 are
+
+1st subarray: 2 the sum is 2
+2nd subarray: 2 the sum is 2
+3rd subarray: 4 the sum is 4
+4th subarray: 4 the sum is 4
+5th subarray: 2,2 the sum is 4
+6th subarray: 2,4 the sum is 6
+7th subarray: 4,4 the sum is 8
+8th subarray: 2,2,4 the sum is 8
+9th subarray: 2,4,4 the sum is 10
+10th subarray: 2,2,4,4 the sum is 12
+
+The 7th smallest is 8
+
+
+There are N number of small cartoons and each cartoon will have a balloon of 
+some color identified by a number. You are asked to select fixed number of 
+P-cartoons as a subset every time and find the number of unique colored 
+balloons in the number of cartoons "P" you pick everytime.
+
+The resultant cartoons ans will be N-P+1 and return it.
+
+The number of distinct number of balloons is:
+    nums[i:i+p-1] = [nums[i], nums[i+1], ..., nums[i+p-1]].
+
+
+Input Format:
+-------------
+Line-1: Two space separated integers, N and P
+Line-2: N space separated integers, nums[]
+
+Output Format:
+--------------
+Print the (N-P+1) integers as output.
+
+
+Sample Input-1:
+---------------
+7 4
+1 2 2 3 3 4 4
+
+Sample Output-1:
+----------------
+3 2 3 2
+
+Explanation: 
+------------
+The number of distinct elements in each subarray of size P goes as follows:
+- nums[0:3] = [1,2,2,3] so ans[0] = 3
+- nums[1:4] = [2,2,3,3] so ans[1] = 2
+- nums[2:5] = [2,3,3,4] so ans[2] = 3
+- nums[3:6] = [3,3,4,4] so ans[3] = 2
+
+
+Sample Input-2:
+---------------
+6 3
+1 1 1 1 1 1
+
+Sample Output-2:
+----------------
+1 1 1 1
+
+Explanation:
+------------
+The number of distinct elements in each subarray goes as follows:
+- nums[0:2] = [1,1,1] so ans[0] = 1
+- nums[1:3] = [1,1,1] so ans[1] = 1
+- nums[2:4] = [1,1,1] so ans[2] = 1
+- nums[3:5] = [1,1,1] so ans[3] = 1
+
+
+Sample Input-3:
+---------------
+7 3
+1 2 3 4 2 1 3
+
+Sample Output-3:
+----------------
+3 3 3 3 3
