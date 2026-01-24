@@ -1,58 +1,4 @@
-(Recursion)
-Amogh is an Antiquarian, The person who collects antiques.
-He found a rear keyboard which has following keys,
-Keys are 'N', 'S', 'C' and 'P'
-
-1st Key - 'N': Print one character 'N' on Console.
-2nd Key - 'S': Select the whole Console.
-3rd Key - 'C': Copy selected content to buffer.
-4th Key - 'P': Print the buffer on Console, and append it after what has 
-already been printed.
-
-Now, your task is to find out maximum numbers of 'N's you can print
-after K keystrokes . 
-
-Input Format:
--------------
-An integer K
-
-Output Format:
---------------
-Print an integer, maximum numbers of 'N's you can print.
-
-
-Sample Input-1:
--------------------
-3
-
-Sample Output-1:
--------------------- 
-3
-
-Explanation: 
----------------
-We can print at most get 3 N's on console by pressing following key sequence:
-N, N, N
-
-
-
-Sample Input-2:
--------------------
-7
-
-Sample Output-2:
----------------------
-9
-
-Explanation: 
----------------
-We can print at most get 9 N's on console by pressing following key sequence:
-N, N, N, S, C, P, P
-5,7-5-1
-4,7-4-1
-3,7-3-1
-############################################ 2 problem ###########################################################
-(Sliding window)
+/*
 You are an architect tasked with designing a series of connected rooms in a 
 building. You are given a list of room sizes represented by an integer array 
 roomSizes, an integer maxFrequency representing the maximum number of times 
@@ -106,3 +52,36 @@ Constraints:
 1 <= roomSizes[i] <= 10^4 where roomSizes[i] is the size of the i-th room.
 1 <= maxFrequency <= roomSizes.length
 1 <= maxArea <= 10^9
+
+*/
+import java.util.*;
+public class P2 {
+    public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            int n = sc.nextInt();
+            int maxFreq = sc.nextInt();
+            int maxArea = sc.nextInt();
+            int rooms[] = new int[n];
+            for (int i = 0; i < n; i++) {
+                rooms[i] = sc.nextInt();
+            }
+            int maxSize = 0;
+            int left = 0;
+            int right = 1;
+            HashMap<Integer, Integer> freq = new HashMap<>();
+            freq.put(rooms[left], freq.getOrDefault(rooms[left], 0) + 1);
+            int area = rooms[left];
+            while (left < right && right < n) {
+                area += rooms[right];
+                freq.put(rooms[right], freq.getOrDefault(rooms[right], 0) + 1);
+                while (area > maxArea || freq.get(rooms[right]) > maxFreq) {
+                    area -= rooms[left];
+                    freq.put(rooms[left], freq.get(rooms[left]) - 1);
+                    left++;
+                }
+                maxSize = Math.max(maxSize, right - left + 1);
+                right++;
+            }
+            System.out.println(maxSize);
+    }
+}

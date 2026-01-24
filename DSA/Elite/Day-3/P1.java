@@ -1,3 +1,4 @@
+/*
 You are a treasure hunter exploring an ancient vault filled with 
 treasure boxes. The vault is represented as an array treasures of 
 n integers, where each integer corresponds to the value of a treasure. 
@@ -93,49 +94,62 @@ Constraints:
 3. 1 <= x <= k <= treasures.length
 4. 1 <= f <= 10
 
---------------------------------------------------------------------------------
-7)
-Birbal is creating a new binary code system BBC (Birbal Binary Code) as follows:
+*/
 
-I	f(I)
--------
-0	""
-1	"0"
-2	"1"
-3	"00"
-4	"01"
-5	"10"
-6	"11"
-7	"000"
+import java.util.*;
 
-You are given an integer value I, where I is positive number.
-Your task is to find BBC representation of  the given number I.
+public class P1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-Input Format:
--------------
-An integer I
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int x = sc.nextInt();
+        int f = sc.nextInt();
 
-Output Format:
---------------
-Print the BBC representation of I.
+        int[] boxes = new int[n];
+        for (int i = 0; i < n; i++) {
+            boxes[i] = sc.nextInt();
+        }
 
+        int[] ans = new int[n - k + 1];
 
-Sample Input-1:
----------------
-23
+        for (int i = 0; i <= n - k; i++) {
 
-Sample Output-1:
-----------------
-1000
+            // Frequency map
+            HashMap<Integer, Integer> freq = new HashMap<>();
+            for (int j = i; j < i + k; j++) {
+                freq.put(boxes[j], freq.getOrDefault(boxes[j], 0) + 1);
+            }
 
+            // Map: priority -> element
+            TreeMap<Integer, Integer> pq =
+                    new TreeMap<>(Collections.reverseOrder());
 
-Sample Input-2:
----------------
-45
+            for (Map.Entry<Integer, Integer> e : freq.entrySet()) {
+                int p = e.getKey();
+                int count = e.getValue();
 
-Sample Output-2:
-----------------
-01110
---------------------------------------------------------------------------------
+                int priority = count * (int)Math.pow(p, f);
+                pq.put(priority, p);
+            }
 
+            int taken = 0;
+            int val = 0;
 
+            for (Map.Entry<Integer, Integer> e : pq.entrySet()) {
+                if (taken == x) break;
+
+                int element = e.getValue();
+                val += element * freq.get(element);
+                taken++;
+            }
+
+            ans[i] = val;
+        }
+
+        for (int v : ans) {
+            System.out.print(v + " ");
+        }
+    }
+}
