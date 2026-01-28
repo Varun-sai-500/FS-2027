@@ -60,3 +60,62 @@ class Node {
     }
 }
 /*
+
+
+import java.util.*;
+
+class Node{
+    int val;
+    Node left,right;
+    Node(int data){
+        val=data;
+        left=right=null;
+    }
+}
+class BT{
+    Node root=null;
+    BT(){
+        root=null;
+    }
+    Node insert(int arr[]){
+        root=new Node(arr[0]);
+        Queue<Node> q=new LinkedList<>();
+        q.offer(root);
+        int i=1;
+        while(!q.isEmpty() && i<arr.length){
+            Node temp=q.poll();
+            if(i<arr.length&& arr[i]!=0){
+                temp.left=new Node(arr[i]);
+                q.add(temp.left);
+            }i++;
+            if(i<arr.length && arr[i]!=0){
+                temp.right=new Node(arr[i]);
+                q.add(temp.right);
+            }i++;
+        }
+        return root;
+    }
+    void insert(Node root,int n){
+        if(root==null){ root=new Node(n);return;}
+        if(root.left==null)insert(root.left,n);
+        if(root.right==null)insert(root.right,n);
+    }
+    void inorder(Node root){
+        if(root==null)return;
+        inorder(root.left);
+        System.out.print(root.val+" ");
+        inorder(root.right);
+    }
+}
+class Main{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        // int arr[]=new int[n];
+        BT t=new BT();
+        for(int i=0;i<n;i++){
+            t.insert(t.root,sc.nextInt());
+        }
+        t.inorder(t.root);
+    }
+}

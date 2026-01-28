@@ -70,7 +70,7 @@ class DSU{
         int pa=find(a);
         int pb=find(b);
         if(pa==pb){
-            ans=new int[]{a,b};
+            ans=new int[]{a+1,b+1};
             return;
         }if(pa>pb){
             parent[pb]=pa;
@@ -79,7 +79,7 @@ class DSU{
         }
     }
     void getans(){
-        System.out.println((ans[0]+1)+" "+(ans[1]+1));
+        System.out.println(ans[0]+" "+ans[1]);
     }
 }
 class Main{
